@@ -20,8 +20,7 @@ function addNavbar(target) {
     // ********************************************************************************************
     function buildNavbar(target, menuData) {
 
-        //  Build navbar
-        $('#' + target).append('<a class="navbar-brand" href="#">' + menuData.title + '</a>');
+        //  Build navbar        
         $('#' + target).append('<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"></button>');
         $('#' + target + ' button').append('<span class="navbar-toggler-icon"></span>');
         $('#' + target).append('<div class="collapse navbar-collapse" id="navbarNavDropdown"></div>');
@@ -49,20 +48,34 @@ function addNavbar(target) {
                 $('#navCol' + i).append($('<a>', { class: "nav-link", href: menuData.col[i].location, text: menuData.col[i].label }));
             }
         }
+
+        // Add navbar icons
+        for (i = 0, l = menuData.icons.length; i < l; i++) {
+            if (menuData.icons[i].url) {
+                //$('#' + target).append($('<a>', { class: "label no-underline hover-white", id: "navbarIcon" + i, href: menuData.icons[i].url, text: menuData.icons[i].label }));
+                $('#navIcons').append($('<a>', { class: "label no-underline hover-white", id: "navbarIcon" + i, href: menuData.icons[i].url }));
+                //$("#navbarIcon" + i).append($('<span>', { class: "icon navbarIcon " + menuData.icons[i].icon }));
+                $("#navbarIcon" + i).append($('<img>', { src: menuData.icons[i].icon }));
+            }
+        }
     }
-        // ************************************************************************************
-        // function to pull JSON data and to add the navBar and menu data.
-        // ************************************************************************************
-        (function () {
-            $.getJSON({
-                url: "../Common/common.json"
-            }).done(function (result) {
+    // ************************************************************************************
+    // function to pull JSON data and to add the navBar and menu data.
+    // ************************************************************************************
+    (function () {
+        $.getJSON({
+            url: "../Common/common.json"
+        }).done(function (result) {
+            console.log("Menu json successful imported in.");
+            try {
                 buildNavbar(target, result.menuData);
-                console.log("Menu json successful imported in.");
-            }).fail(function (xhr, status, error) {
-                console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
-            });
-        }());
+            } catch (error) {
+                console.log("Error in building navbar -- " + error);
+            }
+        }).fail(function (xhr, status, error) {
+            console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+        });
+    }());
 }
 
 // ************************************************************************
@@ -95,29 +108,32 @@ function addSidebar(target, sideBarData) {
         }
     }
 
+    // *** Brand/Name for the top of the sidebar ***
+    $('#brand').append($('<span>', { text: sideBarData.title }));
+
     // *** Discription section of the sidebar ***
     addSegmentHeader(0);
     $('#' + target).append($('<p>', { text: sideBarData.discription }));
     $('#' + target).append($('<div>', { class: "sidebar-divider" }));
 
-
     // *** Technologies section of the sidebar ***
     addSegmentHeader(1);
 
     //  Add technologies list
+    $('#' + target).append($('<ul>', { id: "techList" }));
     for (i = 0, l = sideBarData.technologies.length; i < l; i++) {
-        $('#' + target).append($('<li>', { class: "tech", text: sideBarData.technologies[i] }));
+        $('#techList').append($('<li>', { text: sideBarData.technologies[i] }));
     }
     $('#' + target).append($('<div>', { class: "sidebar-divider" }));
-
 
     // *** Github section of the sidebar  ***
     addSegmentHeader(2);
 
     //  Add Github file list
+    $('#' + target).append($('<ul>', { id: "githubList" }));
     for (i = 0, l = sideBarData.github.length; i < l; i++) {
-        $('#' + target).append($('<li>', { id: target + i }));
-        $('#' + target + i).append($('<a>', { href: sideBarData.github[i].location, text: sideBarData.github[i].label }));
-        $('#' + target + i + ' a').append($('<span>', { class: "icon " + sideBarData.github[i].icon }));
+        $('#githubList').append($('<li>', { id: "githubListItem" + i }));
+        $('#githubListItem' + i).append($('<a>', { href: sideBarData.github[i].location, text: sideBarData.github[i].label }));
+        $('#githubListItem' + i + ' a').append($('<span>', { class: "icon " + sideBarData.github[i].icon }));
     }
 }

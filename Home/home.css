@@ -2,29 +2,51 @@ body, html {
     height: 100%
 }
 
-a {
-    color: black;
+.col-md-5 {
+    padding-right: 0; 
+    padding-left: 0; 
 }
-#content {
-    padding: 30px 150px;
+
+.articleImage{
+    position: relative;
+    text-align: center;    
 }
 
 #content article {
-    background-color: #f0f0f4;
-    border-radius: 8px;
-    padding: 20px 30px; 
-    margin: 20px;   
+    background-color: white;
+    margin-top: 20px;
+    margin-bottom: 20px; 
+}
+
+#content article img {
+    width: 100%;
+    height: fit-content; 
 }
 
 #content p {
     background-color: white;
-    border-radius: 8px;
-    padding: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 20px;
 }
 
 #content .table {
     width: 100%;
     background-color: white;
-    border-radius: 8px;
     padding: 10px;
+}
+
+#content article #tableImage{
+    height: 100%; 
+}
+
+.imageLabel {
+    font-size: 55px;
+    font-weight: 800;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 95%;
+    transform: translate(-50%, -50%);
 }
