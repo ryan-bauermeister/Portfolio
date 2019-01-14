@@ -144,4 +144,9 @@ body {
 
 .container-fluid {
     padding: 0;
+    height: 100%;
+}
+
+.fullheight {
+    height: 100%;
 }

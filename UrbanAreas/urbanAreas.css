@@ -1,0 +1,48 @@
+#urbanAreaImage img {
+  width: 100%; 
+}
+
+#greeting {
+  font-size: 25px;
+}
+
+.content {
+  padding: 5%;
+}
+
+.leftContent {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.rightContent {
+  margin-top: 20px;
+  margin-left: 10px;  
+}
+
+article {
+  background-color: white;
+  padding: 10px;  
+}
+
+.salary {
+  text-align: right;   
+}
+
+.score {
+  text-align: center;
+}
+
+.detailValue {
+  width: 125px;
+}
+
+.sidebar .label {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.hidden {
+   visibility: hidden;
+}
+
